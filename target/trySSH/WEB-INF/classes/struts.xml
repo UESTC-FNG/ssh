@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <!-- constant进行全局配置 -->
+    <!-- 配置访问拦截后缀名 -->
+    <constant name="struts.action.extension" value="action"></constant>
+
+    <!-- 设置中文编码 -->
+    <constant name="struts.i18n.encoding" value="utf-8"></constant>
+
+
+    <!--  package用于一定功能下的功能分类，使用namespace在url前增加访问路径  -->
+    <package name="default" namespace="/" extends="struts-default">
+
+        <!-- name的代表请求路径,class代表处理请求的类,result负责相应结果和页面进行映射的 -->
+        <action name="hello" class="action.HelloAction">
+            <!-- 使用绝对路径，保证index.jsp的响应  -->
+            <result name="success">/index.jsp</result>
+            <result name="error">/error.jsp </result>
+        </action>
+
+        <!-- 使用动态方法调用完成请求处理(写明action对应的方法调用) -->
+        <action name="login" class="action.ByeAction" method="login">
+            <result name="success">/index.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        <action name="exit" class="action.ByeAction" method="exit">
+            <result name="success">/index.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+    </package>
+
+</struts>
